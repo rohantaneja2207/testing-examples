@@ -8,14 +8,19 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.openqa.selenium.WebDriver; 
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import static com.pik.contact.gui.selenium.setup.SeleniumDriver.getDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = Application.class)
+@WebIntegrationTest(value = "server.port=8080")
+@SeleniumTest(driver = ChromeDriver.class, baseUrl = "http://localhost:8080")
 public class ContactsTest {
-
+    @Autowired
+    private WebDriver driver
     @Value("${local.server.port}")
     int port;
 
