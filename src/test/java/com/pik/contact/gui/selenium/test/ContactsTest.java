@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SeleniumTest(driver = ChromeDriver.class, baseUrl = "http://localhost:8080")
 public class ContactsTest {
     @Autowired
-    private WebDriver driver
+    private WebDriver driver;
     @Value("${local.server.port}")
     int port;
 
